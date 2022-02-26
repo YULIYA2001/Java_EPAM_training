@@ -37,26 +37,27 @@ public class Library {
         this.eMail = eMail;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         } else if (o != null && this.getClass() == o.getClass()) {
             Library library = (Library)o;
-            return this.name.equals(library.name) && this.urlAddress.equals(library.urlAddress) && this.eMail.equals(library.eMail);
+            return this.name.equals(library.name)
+                    && this.urlAddress.equals(library.urlAddress)
+                    && this.eMail.equals(library.eMail);
         } else {
             return false;
         }
     }
 
+    @Override
     public int hashCode() {
-        return Objects.hash(new Object[]{this.name, this.urlAddress, this.eMail});
+        return Objects.hash(this.name, this.urlAddress, this.eMail);
     }
 
+    @Override
     public String toString() {
-        return "Library{name='" + this.name + "', urlAddress='" + this.urlAddress + "', eMail='" + this.eMail + "}";
-    }
-
-    public String toReadableString() {
         return "Название: " + this.name + "   URL: " + this.urlAddress + "   e-mail: " + this.eMail;
     }
 }

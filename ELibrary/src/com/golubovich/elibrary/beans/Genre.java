@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Genre {
     private static int codeCount = 0;
-    private int code;
+    private final int code;
     private String name;
     private String description;
 
@@ -38,6 +38,7 @@ public class Genre {
         this.description = description;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -49,15 +50,13 @@ public class Genre {
         }
     }
 
+    @Override
     public int hashCode() {
-        return Objects.hash(new Object[]{this.name, this.description});
+        return Objects.hash(this.name, this.description);
     }
 
+    @Override
     public String toString() {
-        return "Genre{genreName='" + this.name + "', genreDescription='" + this.description + "'}";
-    }
-
-    public String toReadableString() {
         return this.code + ". Жанр: " + this.name + "  (описание: " + this.description + ")";
     }
 }

@@ -5,12 +5,12 @@ import java.util.Objects;
 
 public abstract class Item {
     private static int codeCount = 0;
-    private int code;
+    private final int code;
     private String name;
     private List<String> review;
     private String language;
 
-    public Item(String name, List<String> review, String language) {
+    protected Item(String name, List<String> review, String language) {
         this.code = ++codeCount;
         this.name = name;
         this.review = review;
@@ -49,26 +49,28 @@ public abstract class Item {
         return codeCount;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         } else if (o != null && this.getClass() == o.getClass()) {
             Item item = (Item)o;
-            return this.code == item.code && this.name.equals(item.name) && Objects.equals(this.review, item.review) && this.language.equals(item.language);
+            return this.code == item.code
+                    && this.name.equals(item.name)
+                    && Objects.equals(this.review, item.review)
+                    && this.language.equals(item.language);
         } else {
             return false;
         }
     }
 
+    @Override
     public int hashCode() {
-        return Objects.hash(new Object[]{this.code, this.name, this.review, this.language});
+        return Objects.hash(this.code, this.name, this.review, this.language);
     }
 
+    @Override
     public String toString() {
-        return "Item{code=" + this.code + ", name='" + this.name + "', review=" + this.review + ", language='" + this.language + "'}";
-    }
-
-    public String toReadableString() {
         return "   Код: " + this.code + "   Название: " + this.name + "   Язык: " + this.language;
     }
 }

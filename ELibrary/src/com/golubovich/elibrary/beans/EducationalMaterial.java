@@ -10,7 +10,9 @@ public class EducationalMaterial extends Item {
     private EdMaterialType edMaterialType;
     private String author;
 
-    public EducationalMaterial(String name, List<String> review, String language, EdMaterialSubjects edMaterialSubject, EdMaterialType edMaterialType, String author) {
+    public EducationalMaterial(String name, List<String> review,
+                               String language, EdMaterialSubjects edMaterialSubject,
+                               EdMaterialType edMaterialType, String author) {
         super(name, review, language);
         this.edMaterialSubject = edMaterialSubject;
         this.edMaterialType = edMaterialType;
@@ -41,6 +43,7 @@ public class EducationalMaterial extends Item {
         this.author = author;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -49,25 +52,26 @@ public class EducationalMaterial extends Item {
                 return false;
             } else {
                 EducationalMaterial that = (EducationalMaterial)o;
-                return this.edMaterialSubject == that.edMaterialSubject && this.edMaterialType == that.edMaterialType && Objects.equals(this.author, that.author);
+                return this.edMaterialSubject == that.edMaterialSubject
+                        && this.edMaterialType == that.edMaterialType &&
+                        Objects.equals(this.author, that.author);
             }
         } else {
             return false;
         }
     }
 
+    @Override
     public int hashCode() {
-        return Objects.hash(new Object[]{super.hashCode(), this.edMaterialSubject, this.edMaterialType, this.author});
+        return Objects.hash(super.hashCode(), this.edMaterialSubject, this.edMaterialType, this.author);
     }
 
+    @Override
     public String toString() {
-        EdMaterialSubjects var10000 = this.edMaterialSubject;
-        return "EducationalMaterial{edMaterialSubject=" + var10000 + ", edMaterialType=" + this.edMaterialType + ", author='" + this.author + "'} " + super.toString();
-    }
-
-    public String toReadableString() {
-        String var10000 = super.toReadableString();
-        return "Учебное пособие  -  " + var10000 + "   Предмет: " + this.edMaterialSubject.getName() + "   Тип: " + this.edMaterialType.getName() + "   Автор: " + this.author;
+        return "Учебное пособие  -  " + super.toString() +
+                "   Предмет: " + this.edMaterialSubject.getName() +
+                "   Тип: " + this.edMaterialType.getName() +
+                "   Автор: " + this.author;
     }
 }
 

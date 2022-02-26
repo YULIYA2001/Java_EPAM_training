@@ -29,6 +29,7 @@ public class Book extends Item {
         this.author = author;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -44,17 +45,13 @@ public class Book extends Item {
         }
     }
 
+    @Override
     public int hashCode() {
-        return Objects.hash(new Object[]{super.hashCode(), this.genre, this.author});
+        return Objects.hash(super.hashCode(), this.genre, this.author);
     }
 
+    @Override
     public String toString() {
-        Genre var10000 = this.genre;
-        return "Book{genre=" + var10000 + ", author='" + this.author + "'} " + super.toString();
-    }
-
-    public String toReadableString() {
-        String var10000 = super.toReadableString();
-        return "Книга  -  " + var10000 + "   Автор: " + this.author + this.genre.toReadableString();
+        return "Книга  -  " + super.toString() + "   Автор: " + this.author + this.genre.toString();
     }
 }

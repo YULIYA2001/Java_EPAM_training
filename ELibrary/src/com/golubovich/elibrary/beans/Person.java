@@ -53,6 +53,7 @@ public abstract class Person {
         this.patronymic = patronymic;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -64,16 +65,15 @@ public abstract class Person {
         }
     }
 
+    @Override
     public int hashCode() {
-        return Objects.hash(new Object[]{this.surname, this.name, this.patronymic, this.password});
+        return Objects.hash(this.surname, this.name, this.patronymic, this.password);
     }
 
+    @Override
     public String toString() {
-        return "Person{surname='" + this.surname + "', name='" + this.name + "', patronymic='" + this.patronymic + "', password='" + this.password + "'}";
-    }
-
-    public String toReadableString() {
-        return "ФИО: " + this.surname + " " + this.name + " " + this.patronymic + "    Пароль: " + this.password;
+        return "ФИО: " + this.surname + " " + this.name + " " + this.patronymic +
+                "    Пароль: " + this.password;
     }
 }
 

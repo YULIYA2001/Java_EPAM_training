@@ -31,6 +31,7 @@ public class Magazine extends Item {
         this.date = date;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -46,19 +47,17 @@ public class Magazine extends Item {
         }
     }
 
+    @Override
     public int hashCode() {
-        return Objects.hash(new Object[]{super.hashCode(), this.number, this.date});
+        return Objects.hash(super.hashCode(), this.number, this.date);
     }
 
+    @Override
     public String toString() {
-        int var10000 = this.number;
-        return "Magazine{number=" + var10000 + ", date=" + this.date + "} " + super.toString();
-    }
-
-    public String toReadableString() {
         SimpleDateFormat formatter = new SimpleDateFormat("MM.yyyy");
-        String var10000 = super.toReadableString();
-        return "Журнал  -  " + var10000 + "   Номер: " + this.number + "   Дата: " + formatter.format(this.date);
+        return "Журнал  -  " + super.toString() +
+                "   Номер: " + this.number +
+                "   Дата: " + formatter.format(this.date);
     }
 }
 

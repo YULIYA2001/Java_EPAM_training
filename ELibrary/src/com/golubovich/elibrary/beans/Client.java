@@ -11,7 +11,8 @@ public class Client extends Person {
     private Date registrationDate;
     private ClientStatus clientStatus;
 
-    public Client(String surname, String name, String patronymic, String password, int age, String eMail, Date registrationDate, ClientStatus clientStatus) {
+    public Client(String surname, String name, String patronymic, String password, int age,
+                  String eMail, Date registrationDate, ClientStatus clientStatus) {
         super(surname, name, patronymic, password);
         this.age = age;
         this.eMail = eMail;
@@ -19,7 +20,8 @@ public class Client extends Person {
         this.clientStatus = clientStatus;
     }
 
-    public Client(String surname, String name, String password, int age, String eMail, Date registrationDate, ClientStatus clientStatus) {
+    public Client(String surname, String name, String password, int age, String eMail,
+                  Date registrationDate, ClientStatus clientStatus) {
         super(surname, name, password);
         this.age = age;
         this.eMail = eMail;
@@ -35,11 +37,11 @@ public class Client extends Person {
         this.age = age;
     }
 
-    public String geteMail() {
+    public String getEMail() {
         return this.eMail;
     }
 
-    public void seteMail(String eMail) {
+    public void setEMail(String eMail) {
         this.eMail = eMail;
     }
 
@@ -59,6 +61,7 @@ public class Client extends Person {
         this.clientStatus = clientStatus;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -67,25 +70,29 @@ public class Client extends Person {
                 return false;
             } else {
                 Client client = (Client)o;
-                return this.age == client.age && this.eMail.equals(client.eMail) && this.registrationDate.equals(client.registrationDate) && this.clientStatus == client.clientStatus;
+                return this.age == client.age
+                        && this.eMail.equals(client.eMail)
+                        && this.registrationDate.equals(client.registrationDate)
+                        && this.clientStatus == client.clientStatus;
             }
         } else {
             return false;
         }
     }
 
+    @Override
     public int hashCode() {
-        return Objects.hash(new Object[]{super.hashCode(), this.age, this.eMail, this.registrationDate, this.clientStatus});
+        return Objects.hash(
+                super.hashCode(), this.age, this.eMail, this.registrationDate, this.clientStatus);
     }
 
+    @Override
     public String toString() {
-        int var10000 = this.age;
-        return "Client{age=" + var10000 + ", eMail='" + this.eMail + "', registrationDate=" + this.registrationDate + ", clientStatus=" + this.clientStatus + "} " + super.toString();
-    }
-
-    public String toReadableString() {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String var10000 = super.toReadableString();
-        return var10000 + "   E-mail: " + this.eMail + "   Возраст: " + this.age + "   Дата регистрации: " + formatter.format(this.registrationDate) + "   Статус: " + this.clientStatus.getName();
+        return super.toString() +
+                "   E-mail: " + this.eMail +
+                "   Возраст: " + this.age +
+                "   Дата регистрации: " + formatter.format(this.registrationDate) +
+                "   Статус: " + this.clientStatus.getName();
     }
 }
