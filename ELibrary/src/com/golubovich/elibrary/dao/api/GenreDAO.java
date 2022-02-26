@@ -5,8 +5,7 @@ import java.util.List;
 
 public interface GenreDAO {
     boolean create(Genre var1);
+    List<Genre> read();
 
-    List<Genre> readAll();
-
-    Genre read(int var1);
+    Genre findByCode(int code);
 }

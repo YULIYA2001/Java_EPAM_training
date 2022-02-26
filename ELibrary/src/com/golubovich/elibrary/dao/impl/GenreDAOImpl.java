@@ -9,31 +9,26 @@ import java.util.List;
 public class GenreDAOImpl implements GenreDAO {
     private final DataSource dataSource = DataSource.getInstance();
 
-    public GenreDAOImpl() {
-    }
-
     public boolean create(Genre genre) {
-        boolean result = this.dataSource.getGenres().add(genre);
-        return result;
+        return dataSource.getGenres().add(genre);
     }
 
-    public List<Genre> readAll() {
-        return this.dataSource.getGenres();
+    public List<Genre> read() {
+        return dataSource.getGenres();
     }
 
-    public Genre read(int code) {
-        Iterator iterator = this.dataSource.getGenres().iterator();
+    public Genre findByCode(int code) {
+        Iterator<Genre> genresIterator = this.dataSource.getGenres().iterator();
 
         Genre genre;
-        do {
-            if (!iterator.hasNext()) {
-                return null;
+        while (genresIterator.hasNext()) {
+            genre = genresIterator.next();
+            if (genre.getCode() == code) {
+                return genre;
             }
+        }
 
-            genre = (Genre)iterator.next();
-        } while(code != genre.getCode());
-
-        return genre;
+        return null;
     }
 }
 
