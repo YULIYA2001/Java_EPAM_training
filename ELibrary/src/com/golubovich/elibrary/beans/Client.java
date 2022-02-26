@@ -20,15 +20,6 @@ public class Client extends Person {
         this.clientStatus = clientStatus;
     }
 
-    public Client(String surname, String name, String password, int age, String eMail,
-                  Date registrationDate, ClientStatus clientStatus) {
-        super(surname, name, password);
-        this.age = age;
-        this.eMail = eMail;
-        this.registrationDate = registrationDate;
-        this.clientStatus = clientStatus;
-    }
-
     public int getAge() {
         return this.age;
     }
