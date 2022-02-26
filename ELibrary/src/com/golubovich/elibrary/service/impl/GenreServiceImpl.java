@@ -4,38 +4,33 @@ import com.golubovich.elibrary.beans.Genre;
 import com.golubovich.elibrary.dao.DAOProvider;
 import com.golubovich.elibrary.dao.api.GenreDAO;
 import com.golubovich.elibrary.service.api.GenreService;
-import java.util.Iterator;
 import java.util.List;
 
 public class GenreServiceImpl implements GenreService {
     private final DAOProvider provider = DAOProvider.getInstance();
+    private final GenreDAO genreDAO = provider.getGenreDAO();
 
-    public GenreServiceImpl() {
-    }
-
-    public boolean add(String[] params) {
-        GenreDAO genreDAO = this.provider.getGenreDAO();
-        Genre genre = new Genre(params[0], params[1].replace('_', ' '));
-        boolean result = genreDAO.create(genre);
-        return result;
+    public boolean add(String name, String description) {
+        Genre genre = new Genre(name, description.replace('_', ' '));
+        return genreDAO.create(genre);
     }
 
     public String showAll() {
-        GenreDAO genreDAO = this.provider.getGenreDAO();
-        List<Genre> genres = genreDAO.readAll();
+        List<Genre> genres = genreDAO.read();
+
         if (genres != null && !genres.isEmpty()) {
-            StringBuilder response = new StringBuilder();
-            Iterator var4 = genres.iterator();
-
-            while(var4.hasNext()) {
-                Genre genre = (Genre)var4.next();
-                response.append(genre.toReadableString()).append("\n");
-            }
-
-            return String.valueOf(response);
-        } else {
-            return "Список жанров пуст";
+            return genresListToString(genres);
         }
+        return "Список жанров пуст";
+    }
+
+    private String genresListToString(List<Genre> genres) {
+        StringBuilder genresString = new StringBuilder();
+
+        for (Genre genre : genres) {
+            genresString.append(genre.toString()).append("\n");
+        }
+        return String.valueOf(genresString);
     }
 }
 
