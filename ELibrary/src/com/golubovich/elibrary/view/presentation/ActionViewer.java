@@ -1,8 +1,6 @@
 package com.golubovich.elibrary.view.presentation;
 
 public class ActionViewer {
-    public ActionViewer() {
-    }
 
     public static String authorizationAnswer(boolean result) {
         String response;

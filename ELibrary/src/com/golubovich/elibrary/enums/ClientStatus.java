@@ -18,37 +18,15 @@ public enum ClientStatus {
     }
 
     public static ClientStatus takeByName(String name) {
-        byte var2 = -1;
-        switch(name.hashCode()) {
-            case -1609053245:
-                if (name.equals("Постоянный_читатель")) {
-                    var2 = 3;
-                }
-                break;
-            case -1478194643:
-                if (name.equals("Посетитель")) {
-                    var2 = 1;
-                }
-                break;
-            case -1466295085:
-                if (name.equals("Начинающий")) {
-                    var2 = 0;
-                }
-                break;
-            case 72342595:
-                if (name.equals("Читатель")) {
-                    var2 = 2;
-                }
-        }
 
-        switch(var2) {
-            case 0:
+        switch(name) {
+            case "Начинающий":
                 return BEGINNER;
-            case 1:
+            case "Посетитель":
                 return VISITOR;
-            case 2:
+            case "Читатель":
                 return READER;
-            case 3:
+            case "Постоянный_читатель":
                 return REGULAR_READER;
             default:
                 return UNDEFINED;

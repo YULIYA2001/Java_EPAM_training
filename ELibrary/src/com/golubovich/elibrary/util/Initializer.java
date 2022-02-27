@@ -86,7 +86,7 @@ public class Initializer {
         items.put(ItemType.BOOK, books);
         items.put(ItemType.MAGAZINE, magazines);
         items.put(ItemType.EDUCATIONAL_MATERIAL, edMaterial);
-        
+
         DataSource.getInstance().setItems(items);
     }
 }

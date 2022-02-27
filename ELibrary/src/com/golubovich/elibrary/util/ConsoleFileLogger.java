@@ -13,8 +13,8 @@ public class ConsoleFileLogger extends ConsoleHandler {
     public ConsoleFileLogger() {
         try {
             this.fileHandler = new FileHandler();
-        } catch (Exception var2) {
-            LOG.log(Level.SEVERE, (String)null, var2);
+        } catch (Exception e) {
+            LOG.log(Level.SEVERE, (String)null, e);
         }
 
     }

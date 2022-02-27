@@ -27,16 +27,14 @@ public enum EdMaterialSubjects {
     }
 
     public static EdMaterialSubjects getByCode(int code) {
-        EdMaterialSubjects[] var1 = values();
-        int var2 = var1.length;
+        int count = values().length;
 
-        for(int var3 = 0; var3 < var2; ++var3) {
-            EdMaterialSubjects subject = var1[var3];
+        for(int i = 0; i < count; ++i) {
+            EdMaterialSubjects subject = values()[i];
             if (code == subject.code) {
                 return subject;
             }
         }
-
         return null;
     }
 }
