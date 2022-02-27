@@ -2,7 +2,7 @@ package com.golubovich.elibrary.dao.impl;
 
 import com.golubovich.elibrary.beans.Library;
 import com.golubovich.elibrary.dao.api.LibraryDAO;
-import com.golubovich.elibrary.source.DataSource;
+import com.golubovich.elibrary.util.DataSource;
 
 public class LibraryDAOImpl implements LibraryDAO {
     private final DataSource dataSource = DataSource.getInstance();

@@ -2,7 +2,7 @@ package com.golubovich.elibrary.dao.impl;
 
 import com.golubovich.elibrary.beans.Admin;
 import com.golubovich.elibrary.dao.api.AdminDAO;
-import com.golubovich.elibrary.source.DataSource;
+import com.golubovich.elibrary.util.DataSource;
 
 public class AdminDAOImpl implements AdminDAO {
     private final DataSource dataSource = DataSource.getInstance();
@@ -13,7 +13,7 @@ public class AdminDAOImpl implements AdminDAO {
 
     public boolean update(Admin updatedAdmin) {
         dataSource.setAdmin(updatedAdmin);
-        return true;
+        return true; //TODO
     }
 
     public Admin findByPassword(String password) {

@@ -2,7 +2,7 @@ package com.golubovich.elibrary.dao.impl;
 
 import com.golubovich.elibrary.beans.Genre;
 import com.golubovich.elibrary.dao.api.GenreDAO;
-import com.golubovich.elibrary.source.DataSource;
+import com.golubovich.elibrary.util.DataSource;
 import java.util.Iterator;
 import java.util.List;
 
