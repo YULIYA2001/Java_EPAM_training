@@ -50,25 +50,29 @@ public class ClientServiceImpl implements ClientService {
             patronymic = "";
         }
 
-        Client client = clientDAO.findByEmail(eMail);
+        Client currentClient = clientDAO.findByEmail(eMail);
 
-        if (client != null) {
+        if (currentClient != null) {
+            Client updatedClient = new Client(currentClient);
+
             if (!surname.equals("-")){
-                client.setSurname(surname);
+                updatedClient.setSurname(surname);
             }
             if (!name.equals("-")) {
-                client.setName(name);
+                updatedClient.setName(name);
             }
             if (!patronymic.equals("-")) {
-                client.setPatronymic(patronymic);
+                updatedClient.setPatronymic(patronymic);
             }
             if (!password.equals("-")) {
-                client.setPassword(password);
+                updatedClient.setPassword(password);
             }
             if (clientStatus != ClientStatus.UNDEFINED) {
-                client.setClientStatus(clientStatus);
+                updatedClient.setClientStatus(clientStatus);
             }
-            return clientDAO.update(client);
+
+            clientDAO.update(currentClient, updatedClient);
+            return true;
         }
         return false;
     }

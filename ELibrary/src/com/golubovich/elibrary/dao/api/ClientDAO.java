@@ -6,7 +6,7 @@ import java.util.List;
 public interface ClientDAO {
     boolean create(Client var1);
     List<Client> read();
-    boolean update(Client updatedClient);
+    void update(Client currentClient, Client updatedClient);
     boolean delete(Client deletedClient);
 
     Client findByEmail(String eMail);

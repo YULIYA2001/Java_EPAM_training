@@ -17,24 +17,12 @@ public class ClientDAOImpl implements ClientDAO {
         return this.dataSource.getClients();
     }
 
-    public boolean update(Client updatedClient) {
-        Client currentClient = findByEmail(updatedClient.getEMail());
-
-        if (currentClient != null) {
-            dataSource.getClients().set(dataSource.getClients().indexOf(currentClient), updatedClient);
-            return true;
-        }
-        return false;
+    public void update(Client currentClient, Client updatedClient) {
+        dataSource.getClients().set(dataSource.getClients().indexOf(currentClient), updatedClient);
     }
 
     public boolean delete(Client deletedClient) {
-        Client currentClient = findByEmail(deletedClient.getEMail());
-
-        if (currentClient != null) {
-            dataSource.getClients().remove(currentClient);
-            return true;
-        }
-        return false;
+        return dataSource.getClients().remove(deletedClient);
     }
 
     public Client findByEmail(String eMail) {
