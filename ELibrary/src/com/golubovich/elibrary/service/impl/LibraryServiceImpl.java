@@ -7,19 +7,33 @@ import com.golubovich.elibrary.service.api.LibraryService;
 
 public class LibraryServiceImpl implements LibraryService {
     private final DAOProvider provider = DAOProvider.getInstance();
-
-    public LibraryServiceImpl() {
-    }
+    private final LibraryDAO libraryDAO = provider.getLibraryDAO();
 
     public String showInfo() {
-        LibraryDAO libraryDAO = this.provider.getLibraryDAO();
         Library library = libraryDAO.read();
-        return library == null ? "1 error LibraryServiceImpl showInfo" : library.toReadableString();
+        return library == null ? "1 error LibraryServiceImpl showInfo" : library.toString();
     }
 
-    public boolean changeInfo(String[] params) {
-        LibraryDAO libraryDAO = this.provider.getLibraryDAO();
-        boolean result = libraryDAO.changeData(params[0], params[1], params[2]);
-        return result;
+    public boolean changeInfo(String[] updatedFields) {
+        String name = updatedFields[0];
+        String urlAddress = updatedFields[1];
+        String eMail = updatedFields[2];
+
+        Library library = libraryDAO.read();
+
+        if(library != null) {
+            if (!name.equals("-")) {
+                library.setName(name);
+            }
+            if (!urlAddress.equals("-")) {
+                library.setUrlAddress(urlAddress);
+            }
+            if (!eMail.equals("-")) {
+                library.setEMail(eMail);
+            }
+            libraryDAO.update(library);
+            return true;
+        }
+        return false;
     }
 }

@@ -7,23 +7,8 @@ import com.golubovich.elibrary.source.DataSource;
 public class LibraryDAOImpl implements LibraryDAO {
     private final DataSource dataSource = DataSource.getInstance();
 
-    public LibraryDAOImpl() {
-    }
-
-    public boolean changeData(String name, String urlAddress, String eMail) {
-        if (!name.equals("-")) {
-            this.dataSource.getLibrary().setName(name);
-        }
-
-        if (!urlAddress.equals("-")) {
-            this.dataSource.getLibrary().setUrlAddress(urlAddress);
-        }
-
-        if (!eMail.equals("-")) {
-            this.dataSource.getLibrary().setEMail(eMail);
-        }
-
-        return true;
+    public void update(Library updatedLibrary) {
+        dataSource.setLibrary(updatedLibrary);
     }
 
     public Library read() {
