@@ -1,5 +1,8 @@
 package com.golubovich.elibrary.dao;
 
+import com.golubovich.elibrary.beans.Book;
+import com.golubovich.elibrary.beans.EducationalMaterial;
+import com.golubovich.elibrary.beans.Magazine;
 import com.golubovich.elibrary.dao.api.AdminDAO;
 import com.golubovich.elibrary.dao.api.ClientDAO;
 import com.golubovich.elibrary.dao.api.GenreDAO;
@@ -17,9 +20,9 @@ public final class DAOProvider {
     private static final DAOProvider instance = new DAOProvider();
     private final AdminDAO adminDAO = new AdminDAOImpl();
     private final ClientDAO clientDAO = new ClientDAOImpl();
-    private final ItemDAO magazineDAO = new MagazineDAOImpl();
-    private final ItemDAO bookDAO = new BookDAOImpl();
-    private final ItemDAO edMaterialDAO = new EducationalMaterialDAOImpl();
+    private final ItemDAO<Magazine> magazineDAO = new MagazineDAOImpl();
+    private final ItemDAO<Book> bookDAO = new BookDAOImpl();
+    private final ItemDAO<EducationalMaterial> edMaterialDAO = new EducationalMaterialDAOImpl();
     private final GenreDAO genreDAO = new GenreDAOImpl();
     private final LibraryDAO libraryDAO = new LibraryDAOImpl();
 
@@ -38,7 +41,7 @@ public final class DAOProvider {
         return this.adminDAO;
     }
 
-    public ItemDAO getMagazineDAO() {
+    public ItemDAO<Magazine> getMagazineDAO() {
         return this.magazineDAO;
     }
 
@@ -46,11 +49,11 @@ public final class DAOProvider {
         return this.genreDAO;
     }
 
-    public ItemDAO getBookDAO() {
+    public ItemDAO<Book> getBookDAO() {
         return this.bookDAO;
     }
 
-    public ItemDAO getEdMaterialDAO() {
+    public ItemDAO<EducationalMaterial> getEdMaterialDAO() {
         return this.edMaterialDAO;
     }
 
