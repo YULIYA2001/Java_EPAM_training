@@ -19,6 +19,13 @@ public class EducationalMaterial extends Item {
         this.author = author;
     }
 
+    public EducationalMaterial(EducationalMaterial educationalMaterial) {
+        super(educationalMaterial.getName(), educationalMaterial.getReview(), educationalMaterial.getLanguage());
+        this.edMaterialSubject = educationalMaterial.edMaterialSubject;
+        this.edMaterialType = educationalMaterial.edMaterialType;
+        this.author = educationalMaterial.author;
+    }
+
     public EdMaterialSubjects getEdMaterialSubject() {
         return this.edMaterialSubject;
     }

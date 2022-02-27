@@ -13,6 +13,12 @@ public class Book extends Item {
         this.author = author;
     }
 
+    public Book(Book copiedBook) {
+        super(copiedBook.getName(), copiedBook.getReview(), copiedBook.getLanguage());
+        this.genre = copiedBook.genre;
+        this.author = copiedBook.author;
+    }
+
     public Genre getGenre() {
         return this.genre;
     }

@@ -15,6 +15,12 @@ public class Magazine extends Item {
         this.date = date;
     }
 
+    public Magazine(Magazine copiedMagazine) {
+        super(copiedMagazine.getName(), copiedMagazine.getReview(), copiedMagazine.getLanguage());
+        this.number = copiedMagazine.number;
+        this.date = copiedMagazine.date;
+    }
+
     public int getNumber() {
         return this.number;
     }
