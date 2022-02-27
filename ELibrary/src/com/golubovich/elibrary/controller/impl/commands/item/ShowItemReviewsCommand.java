@@ -5,50 +5,27 @@ import com.golubovich.elibrary.service.ServiceProvider;
 import com.golubovich.elibrary.service.api.ItemService;
 
 public class ShowItemReviewsCommand implements Command {
-    public ShowItemReviewsCommand() {
-    }
 
-    public String execute(String[] params, Object object) {
-        ServiceProvider provider = ServiceProvider.getInstance();
+    public String execute(String[] params) {
         if (params.length == 2) {
-            String reviews = params[0];
-            byte var6 = -1;
-            switch(reviews.hashCode()) {
-                case -1344762325:
-                    if (reviews.equals("show-reviews-book")) {
-                        var6 = 1;
-                    }
-                    break;
-                case 1221798725:
-                    if (reviews.equals("show-reviews-ed_material")) {
-                        var6 = 2;
-                    }
-                    break;
-                case 1532661206:
-                    if (reviews.equals("show-reviews-magazine")) {
-                        var6 = 0;
-                    }
-            }
+            ServiceProvider provider = ServiceProvider.getInstance();
+            ItemService itemService = null;
 
-            ItemService itemService;
-            switch(var6) {
-                case 0:
-                    itemService = provider.getMagazineService();
-                    break;
-                case 1:
-                    itemService = provider.getBookService();
-                    break;
-                case 2:
+            switch (params[0]) {
+                case "how-reviews-ed_material":
                     itemService = provider.getEdMaterialService();
                     break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + params[0]);
+                case "show-reviews-book":
+                    itemService = provider.getBookService();
+                    break;
+                case "show-reviews-magazine":
+                    itemService = provider.getMagazineService();
             }
 
-            reviews = itemService.showReviewsByCode(Integer.parseInt(params[1].split("=")[1]));
-            return "0 " + reviews;
-        } else {
-            return "1 error ShowItemReviewsCommand";
+            if (itemService != null) {
+                return "0 " + itemService.showReviewsByCode(Integer.parseInt(params[1].split("=")[1]));
+            }
         }
+        return "1 error ShowItemReviewsCommand";
     }
 }

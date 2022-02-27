@@ -6,28 +6,29 @@ import com.golubovich.elibrary.service.api.AdminService;
 import com.golubovich.elibrary.service.api.ClientService;
 
 public class ShowInfoCommand implements Command {
-    public ShowInfoCommand() {
-    }
 
-    public String execute(String[] params, Object object) {
+    public String execute(String[] params) {
         ServiceProvider provider = ServiceProvider.getInstance();
-        ClientService clientService;
-        String client;
+
+        // all clients
         if ("show-clients".equals(params[0])) {
-            clientService = provider.getClientService();
-            client = clientService.showAll();
-            return "0 " + client;
-        } else if (params.length == 1) {
-            AdminService adminService = provider.getAdminService();
-            client = adminService.show();
-            return "0 " + client;
-        } else if (params.length == 2) {
-            clientService = provider.getClientService();
-            client = clientService.findByEMail(params[1].split("=")[1]);
-            return "0 " + client;
-        } else {
-            return "1 error";
+            ClientService clientService = provider.getClientService();
+            return "0 " + clientService.showAll();
         }
+
+        // admin
+        if (params.length == 1) {
+            AdminService adminService = provider.getAdminService();
+            return "0 " + adminService.show();
+        }
+
+        // client
+        if (params.length == 2) {
+            ClientService clientService = provider.getClientService();
+            return "0 " + clientService.showByEMail(params[1].split("=")[1]);
+        }
+
+        return "1 error";
     }
 }
 

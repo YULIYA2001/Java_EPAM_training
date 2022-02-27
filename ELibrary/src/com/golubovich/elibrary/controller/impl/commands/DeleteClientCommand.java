@@ -6,17 +6,16 @@ import com.golubovich.elibrary.service.api.ClientService;
 import com.golubovich.elibrary.view.presentation.ActionViewer;
 
 public class DeleteClientCommand implements Command {
-    public DeleteClientCommand() {
-    }
 
-    public String execute(String[] params, Object object) {
+    public String execute(String[] params) {
         ServiceProvider provider = ServiceProvider.getInstance();
+
         if (params.length == 2) {
             ClientService clientService = provider.getClientService();
             boolean result = clientService.deleteByEMail(params[1].split("=")[1]);
             return ActionViewer.deleteAnswer(result);
-        } else {
-            return "1 error";
         }
+
+        return "1 error";
     }
 }

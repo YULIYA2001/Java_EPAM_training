@@ -8,30 +8,31 @@ import com.golubovich.elibrary.service.api.ClientService;
 import com.golubovich.elibrary.view.presentation.ActionViewer;
 
 public class ChangeInfoCommand implements Command {
-    public ChangeInfoCommand() {
-    }
 
-    public String execute(String[] params, Object object) {
+    public String execute(String[] params) {
         ServiceProvider provider = ServiceProvider.getInstance();
+
         String[] args;
-        int i;
         boolean result;
+
+        // admin
         if (params.length == 5) {
             args = new String[4];
 
-            for(i = 1; i < params.length; ++i) {
+            for(int i = 1; i < params.length; ++i) {
                 args[i - 1] = params[i].split("=")[1];
             }
 
             AdminService adminService = provider.getAdminService();
             result = adminService.changeData(args[0], args[1], args[2], args[3]);
             return ActionViewer.changeDataAnswer(result);
-        } else if (params.length != 7) {
-            return "1 error ChangeInfoCommand";
-        } else {
+        }
+
+        // client
+        if (params.length == 7) {
             args = new String[6];
 
-            for(i = 1; i < params.length; ++i) {
+            for(int i = 1; i < params.length; ++i) {
                 args[i - 1] = params[i].split("=")[1];
             }
 
@@ -39,5 +40,7 @@ public class ChangeInfoCommand implements Command {
             result = clientService.changeData(args[0], args[1], args[2], args[3], args[4], ClientStatus.takeByName(args[5]));
             return ActionViewer.changeDataAnswer(result);
         }
+
+        return "1 error ChangeInfoCommand";
     }
 }

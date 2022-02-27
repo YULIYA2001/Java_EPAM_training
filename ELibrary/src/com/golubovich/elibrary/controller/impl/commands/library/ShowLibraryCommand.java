@@ -5,17 +5,15 @@ import com.golubovich.elibrary.service.ServiceProvider;
 import com.golubovich.elibrary.service.api.LibraryService;
 
 public class ShowLibraryCommand implements Command {
-    public ShowLibraryCommand() {
-    }
 
-    public String execute(String[] params, Object object) {
+    public String execute(String[] params) {
         ServiceProvider provider = ServiceProvider.getInstance();
+
         if (params.length == 1) {
             LibraryService libraryService = provider.getLibraryService();
-            String library = libraryService.showInfo();
-            return "0 " + library;
-        } else {
-            return "1 error ShowLibraryCommand";
+            return "0 " + libraryService.showInfo();
         }
+
+        return "1 error ShowLibraryCommand";
     }
 }

@@ -5,18 +5,16 @@ import com.golubovich.elibrary.service.ServiceProvider;
 import com.golubovich.elibrary.service.api.GenreService;
 
 public class ShowGenresCommand implements Command {
-    public ShowGenresCommand() {
-    }
 
-    public String execute(String[] params, Object object) {
+    public String execute(String[] params) {
         ServiceProvider provider = ServiceProvider.getInstance();
+
         if (params.length == 1) {
             GenreService genreService = provider.getGenreService();
-            String genres = genreService.showAll();
-            return "0 " + genres;
-        } else {
-            return "1 error ShowGenresCommand";
+            return "0 " + genreService.showAll();
         }
+
+        return "1 error ShowGenresCommand";
     }
 }
 

@@ -6,14 +6,10 @@ import com.golubovich.elibrary.service.api.LibraryService;
 import com.golubovich.elibrary.view.presentation.ActionViewer;
 
 public class ChangeLibraryCommand implements Command {
-    public ChangeLibraryCommand() {
-    }
 
-    public String execute(String[] params, Object object) {
+    public String execute(String[] params) {
         ServiceProvider provider = ServiceProvider.getInstance();
-        if (params.length != 4) {
-            return "1 error ChangeLibraryCommand";
-        } else {
+        if (params.length == 4) {
             String[] args = new String[3];
 
             for(int i = 1; i < params.length; ++i) {
@@ -24,6 +20,8 @@ public class ChangeLibraryCommand implements Command {
             boolean result = libraryService.changeInfo(args);
             return ActionViewer.changeDataAnswer(result);
         }
+
+        return "1 error ChangeLibraryCommand";
     }
 }
 

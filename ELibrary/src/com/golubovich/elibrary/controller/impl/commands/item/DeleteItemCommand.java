@@ -6,51 +6,29 @@ import com.golubovich.elibrary.service.api.ItemService;
 import com.golubovich.elibrary.view.presentation.ActionViewer;
 
 public class DeleteItemCommand implements Command {
-    public DeleteItemCommand() {
-    }
 
-    public String execute(String[] params, Object object) {
-        ServiceProvider provider = ServiceProvider.getInstance();
+    public String execute(String[] params) {
         if (params.length == 2) {
-            String var5 = params[0];
-            byte var6 = -1;
-            switch(var5.hashCode()) {
-                case -1168528949:
-                    if (var5.equals("delete-book")) {
-                        var6 = 1;
-                    }
-                    break;
-                case -1029383818:
-                    if (var5.equals("delete-magazine")) {
-                        var6 = 0;
-                    }
-                    break;
-                case 1202305957:
-                    if (var5.equals("delete-ed_material")) {
-                        var6 = 2;
-                    }
-            }
+            ServiceProvider provider = ServiceProvider.getInstance();
+            ItemService itemService = null;
 
-            ItemService itemService;
-            switch(var6) {
-                case 0:
-                    itemService = provider.getMagazineService();
-                    break;
-                case 1:
+            switch(params[0]) {
+                case "delete-book":
                     itemService = provider.getBookService();
                     break;
-                case 2:
-                    itemService = provider.getEdMaterialService();
+                case "delete-magazine":
+                    itemService = provider.getMagazineService();
                     break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + params[0]);
+                case "delete-ed_material":
+                    itemService = provider.getEdMaterialService();
             }
 
-            boolean result = itemService.deleteByCode(Integer.parseInt(params[1].split("=")[1]));
-            return ActionViewer.deleteAnswer(result);
-        } else {
-            return "1 error";
+            if (itemService != null) {
+                boolean result = itemService.deleteByCode(Integer.parseInt(params[1].split("=")[1]));
+                return ActionViewer.deleteAnswer(result);
+            }
         }
+        return "1 error";
     }
 }
 

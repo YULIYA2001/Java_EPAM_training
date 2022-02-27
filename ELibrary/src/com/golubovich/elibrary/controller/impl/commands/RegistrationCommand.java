@@ -6,13 +6,9 @@ import com.golubovich.elibrary.service.api.ClientService;
 import com.golubovich.elibrary.view.presentation.ActionViewer;
 
 public class RegistrationCommand implements Command {
-    public RegistrationCommand() {
-    }
 
-    public String execute(String[] params, Object object) {
-        if (params.length != 7) {
-            return "1 error";
-        } else {
+    public String execute(String[] params) {
+        if (params.length == 7) {
             ServiceProvider provider = ServiceProvider.getInstance();
             ClientService clientService = provider.getClientService();
             String[] args = new String[6];
@@ -24,6 +20,8 @@ public class RegistrationCommand implements Command {
             boolean result = clientService.register(args);
             return ActionViewer.registrationClientAnswer(result);
         }
+
+        return "1 error";
     }
 }
 
