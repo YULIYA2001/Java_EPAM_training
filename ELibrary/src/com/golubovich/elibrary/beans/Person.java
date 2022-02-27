@@ -8,12 +8,6 @@ public abstract class Person {
     private String patronymic = "";
     private String password;
 
-    protected Person(String surname, String name, String password) {
-        this.surname = surname;
-        this.name = name;
-        this.password = password;
-    }
-
     protected Person(String surname, String name, String patronymic, String password) {
         this.surname = surname;
         this.name = name;
