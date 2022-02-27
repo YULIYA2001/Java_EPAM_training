@@ -6,19 +6,18 @@ import com.golubovich.elibrary.beans.Genre;
 import com.golubovich.elibrary.beans.Item;
 import com.golubovich.elibrary.beans.Library;
 import com.golubovich.elibrary.enums.ItemType;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class DataSource {
     private Library library = new Library("E-Library", "http://elibrary.com", "e-library@gmail.com");
-    private Admin admin = new Admin("admin", "admin", "admin123");
+    private Admin admin = new Admin("admin", "admin", "", "admin123");
     private List<Client> clients;
     private List<Genre> genres;
-    private Map<ItemType, List<Item>> items;
+    private Map<ItemType, ArrayList<Item>> items;
     private static final DataSource instance = new DataSource();
 
-    private DataSource() {
-    }
 
     public static DataSource getInstance() {
         return instance;
@@ -56,11 +55,11 @@ public class DataSource {
         this.clients = clients;
     }
 
-    public Map<ItemType, List<Item>> getItems() {
+    public Map<ItemType, ArrayList<Item>> getItems() {
         return this.items;
     }
 
-    public void setItems(Map<ItemType, List<Item>> items) {
+    public void setItems(Map<ItemType, ArrayList<Item>> items) {
         this.items = items;
     }
 }
