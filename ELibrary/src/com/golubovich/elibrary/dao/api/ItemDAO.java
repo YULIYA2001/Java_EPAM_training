@@ -3,14 +3,11 @@ package com.golubovich.elibrary.dao.api;
 import java.util.List;
 
 public interface ItemDAO<T> {
-    boolean create(T var1);
+    boolean create(T item);
+    List<T> read();
+    void update(T currentItem, T updatedItem);
+    boolean delete(T deletedItem);
 
-    T readReviews(int var1);
-
-    boolean addReview(int var1, String var2);
-
-    List<T> readAll();
-
-    boolean delete(int var1);
+    T findByCode(int code);
 }
 

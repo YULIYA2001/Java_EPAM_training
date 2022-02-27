@@ -1,73 +1,46 @@
 package com.golubovich.elibrary.dao.impl;
 
 import com.golubovich.elibrary.beans.Book;
+import com.golubovich.elibrary.beans.Item;
 import com.golubovich.elibrary.dao.api.ItemDAO;
 import com.golubovich.elibrary.enums.ItemType;
 import com.golubovich.elibrary.source.DataSource;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
 public class BookDAOImpl implements ItemDAO<Book> {
     private final DataSource dataSource = DataSource.getInstance();
 
-    public BookDAOImpl() {
+    public boolean create(Book item) {
+        return dataSource.getItems().get(ItemType.BOOK).add(item);
     }
 
-    public boolean create(Book bean) {
-        boolean result = ((List)this.dataSource.getItems().get(ItemType.BOOK)).add(bean);
-        return result;
+    public List<Book> read() {
+        return new ArrayList(dataSource.getItems().get(ItemType.BOOK));
     }
 
-    public Book readReviews(int code) {
-        Iterator iterator = ((List)this.dataSource.getItems().get(ItemType.BOOK)).iterator();
+    public void update(Book currentItem, Book updatedItem) {
+        dataSource.getItems().get(ItemType.BOOK).set(
+                dataSource.getItems().get(ItemType.BOOK).indexOf(currentItem), updatedItem
+        );
+    }
+
+    public boolean delete(Book deletedItem) {
+        return dataSource.getItems().get(ItemType.BOOK).remove(deletedItem);
+    }
+
+    public Book findByCode(int code) {
+        Iterator<Item> booksIterator = dataSource.getItems().get(ItemType.BOOK).iterator();
 
         Book book;
-        do {
-            if (!iterator.hasNext()) {
-                return null;
+        while(booksIterator.hasNext()) {
+            book = (Book)booksIterator.next();
+            //TODO exception
+            if(book.getCode() != code) {
+                return book;
             }
-
-            book = (Book)iterator.next();
-        } while(book.getCode() != code);
-
-        return book;
-    }
-
-    public boolean addReview(int code, String review) {
-        Iterator iterator = ((List)this.dataSource.getItems().get(ItemType.BOOK)).iterator();
-
-        Book book;
-        do {
-            if (!iterator.hasNext()) {
-                return false;
-            }
-
-            book = (Book)iterator.next();
-        } while(book.getCode() != code);
-
-        book.getReview().add(review);
-        return true;
-    }
-
-    public List<Book> readAll() {
-        return new ArrayList((Collection)this.dataSource.getItems().get(ItemType.BOOK));
-    }
-
-    public boolean delete(int code) {
-        Iterator iterator = ((List)this.dataSource.getItems().get(ItemType.BOOK)).iterator();
-
-        Book book;
-        do {
-            if (!iterator.hasNext()) {
-                return false;
-            }
-
-            book = (Book)iterator.next();
-        } while(book.getCode() != code);
-
-        ((List)this.dataSource.getItems().get(ItemType.BOOK)).remove(book);
-        return true;
+        }
+        return null;
     }
 }
