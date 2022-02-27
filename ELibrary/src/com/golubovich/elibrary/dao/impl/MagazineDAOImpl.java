@@ -37,7 +37,7 @@ public class MagazineDAOImpl implements ItemDAO<Magazine> {
         while(magazinesIterator.hasNext()) {
             magazine = (Magazine) magazinesIterator.next();
             //TODO exception
-            if(magazine.getCode() != code) {
+            if(magazine.getCode() == code) {
                 return magazine;
             }
         }

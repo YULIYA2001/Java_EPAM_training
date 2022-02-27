@@ -39,7 +39,7 @@ public class EducationalMaterialDAOImpl implements ItemDAO<EducationalMaterial> 
         while(edMaterialsIterator.hasNext()) {
             edMaterial = (EducationalMaterial) edMaterialsIterator.next();
             //TODO exception
-            if(edMaterial.getCode() != code) {
+            if(edMaterial.getCode() == code) {
                 return edMaterial;
             }
         }

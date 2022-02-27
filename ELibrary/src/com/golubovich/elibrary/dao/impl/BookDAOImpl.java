@@ -37,7 +37,7 @@ public class BookDAOImpl implements ItemDAO<Book> {
         while(booksIterator.hasNext()) {
             book = (Book)booksIterator.next();
             //TODO exception
-            if(book.getCode() != code) {
+            if(book.getCode() == code) {
                 return book;
             }
         }
