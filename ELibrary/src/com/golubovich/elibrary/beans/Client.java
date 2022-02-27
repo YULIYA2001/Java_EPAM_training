@@ -20,6 +20,15 @@ public class Client extends Person {
         this.clientStatus = clientStatus;
     }
 
+    public Client(Client copiedClient) {
+        super(copiedClient.getSurname(), copiedClient.getName(),
+                copiedClient.getPatronymic(), copiedClient.getPassword());
+        this.age = copiedClient.age;
+        this.eMail = copiedClient.eMail;
+        this.registrationDate = copiedClient.registrationDate;
+        this.clientStatus = copiedClient.clientStatus;
+    }
+
     public int getAge() {
         return this.age;
     }
