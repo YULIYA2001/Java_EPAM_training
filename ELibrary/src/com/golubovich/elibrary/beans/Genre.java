@@ -1,13 +1,17 @@
 package com.golubovich.elibrary.beans;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Genre implements Comparable<Genre>{
+public class Genre implements Comparable<Genre>, Serializable {
     private static int codeCount = 0;
     private final int code;
     private String name;
     private String description;
 
+    public Genre() {
+        this.code = ++codeCount;
+    }
 
     public Genre(String genreName, String genreDescription) {
         this.code = ++codeCount;

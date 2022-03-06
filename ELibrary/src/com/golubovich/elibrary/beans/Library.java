@@ -1,11 +1,14 @@
 package com.golubovich.elibrary.beans;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Library {
+public class Library implements Serializable {
     private String name;
     private String urlAddress;
     private String eMail;
+
+    public Library() {}
 
     public Library(String name, String urlAddress, String eMail) {
         this.name = name;

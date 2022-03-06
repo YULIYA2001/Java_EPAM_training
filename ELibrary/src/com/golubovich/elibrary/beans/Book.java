@@ -1,11 +1,14 @@
 package com.golubovich.elibrary.beans;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-public class Book extends Item {
+public class Book extends Item implements Serializable {
     private Genre genre;
     private String author;
+
+    public Book() {}
 
     public Book(String name, List<String> review, String language, Genre genre, String author) {
         super(name, review, language);

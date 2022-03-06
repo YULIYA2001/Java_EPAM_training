@@ -2,13 +2,16 @@ package com.golubovich.elibrary.beans;
 
 import com.golubovich.elibrary.enums.EdMaterialSubjects;
 import com.golubovich.elibrary.enums.EdMaterialType;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-public class EducationalMaterial extends Item {
+public class EducationalMaterial extends Item implements Serializable {
     private EdMaterialSubjects edMaterialSubject;
     private EdMaterialType edMaterialType;
     private String author;
+
+    public EducationalMaterial() {}
 
     public EducationalMaterial(String name, List<String> review,
                                String language, EdMaterialSubjects edMaterialSubject,

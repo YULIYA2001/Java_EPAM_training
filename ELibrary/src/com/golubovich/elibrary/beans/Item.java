@@ -1,15 +1,19 @@
 package com.golubovich.elibrary.beans;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Item implements Comparable<Item>{
+public abstract class Item implements Comparable<Item>, Serializable {
     private static int codeCount = 0;
     private final int code;
     private String name;
     private List<String> review;
     private String language;
 
+    protected Item() {
+        this.code = ++codeCount;
+    }
 
     protected Item(String name, List<String> review, String language) {
         this.code = ++codeCount;

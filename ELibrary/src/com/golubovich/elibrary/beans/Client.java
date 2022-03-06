@@ -1,11 +1,12 @@
 package com.golubovich.elibrary.beans;
 
 import com.golubovich.elibrary.enums.ClientStatus;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-public class Client extends Person implements Comparable<Client> {
+public class Client extends Person implements Comparable<Client>, Serializable {
     private static int count = 0;
     private int age;
     private String eMail;
@@ -15,6 +16,8 @@ public class Client extends Person implements Comparable<Client> {
     {
         count++;
     }
+
+    public Client() {}
 
     public Client(String surname, String name, String patronymic, String password, int age,
                   String eMail, Date registrationDate, ClientStatus clientStatus) {

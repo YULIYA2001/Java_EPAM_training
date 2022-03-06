@@ -1,12 +1,15 @@
 package com.golubovich.elibrary.beans;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Person {
+public abstract class Person implements Serializable {
     private String surname;
     private String name;
     private String patronymic = "";
     private String password;
+
+    protected Person() {}
 
     protected Person(String surname, String name, String patronymic, String password) {
         this.surname = surname;

@@ -1,6 +1,11 @@
 package com.golubovich.elibrary.beans;
 
-public class Admin extends Person {
+import java.io.Serializable;
+
+public class Admin extends Person implements Serializable {
+
+    public Admin() {}
+
     public Admin(String surname, String name, String patronymic, String password) {
         super(surname, name, patronymic, password);
     }

@@ -1,13 +1,16 @@
 package com.golubovich.elibrary.beans;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class Magazine extends Item {
+public class Magazine extends Item implements Serializable {
     private int number;
     private Date date;
+
+    public Magazine() {}
 
     public Magazine(String name, List<String> review, String language, int number, Date date) {
         super(name, review, language);
