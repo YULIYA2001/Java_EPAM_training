@@ -13,6 +13,8 @@ public final class Constants {
     public static final String AUTHOR_PATTERN = "[a-zA-Zа-яА-Я.\\-\\s]+";
 
 
+    public static final String SERIALIZATION_FILE_NAME = "ELibrary.dat";
+
 
     public static final String WRONG_EMAIL_FORMAT = "Неверный ввод. Формат e-mail: АнглийскиеБуквыИЦифры@буквы.буквы";
     public static final String WRONG_PASSWORD_FORMAT = "Неверный ввод. Пароль буквенно цифровой " + MIN_PASSWORD_SIZE + "-" + MAX_PASSWORD_SIZE + " символов.";
