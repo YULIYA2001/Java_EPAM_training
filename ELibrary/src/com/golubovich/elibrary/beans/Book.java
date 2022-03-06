@@ -58,6 +58,6 @@ public class Book extends Item {
 
     @Override
     public String toString() {
-        return "Книга  -  " + super.toString() + "   Автор: " + this.author + this.genre.toString();
+        return "Книга  -  " + super.toString() + "   Автор: " + this.author + "   " + this.genre.toString();
     }
 }
