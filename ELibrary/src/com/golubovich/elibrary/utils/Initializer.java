@@ -1,4 +1,4 @@
-package com.golubovich.elibrary.util;
+package com.golubovich.elibrary.utils;
 
 import com.golubovich.elibrary.beans.Book;
 import com.golubovich.elibrary.beans.Client;
@@ -11,6 +11,8 @@ import com.golubovich.elibrary.enums.EdMaterialSubjects;
 import com.golubovich.elibrary.enums.EdMaterialType;
 import com.golubovich.elibrary.enums.ItemType;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -20,8 +22,8 @@ public class Initializer {
 
     public static void initialization() {
         ArrayList<Genre> genres = new ArrayList();
-        genres.add(new Genre("Роман", "художественное произведение большого объема"));
         genres.add(new Genre("Юмор", "смешное художественное произведение"));
+        genres.add(new Genre("Роман", "художественное произведение большого объема"));
         DataSource.getInstance().setGenres(genres);
 
         List<Client> clients = new ArrayList();
@@ -49,18 +51,18 @@ public class Initializer {
 
         ArrayList<Item> books = new ArrayList();
         books.add(new Book(
+            "Хирургия",
+            Collections.singletonList("good"),
+            "русский",
+            genres.get(0),
+            "Чехов А.П.")
+        );
+        books.add(new Book(
                 "Война и мир",
                 new ArrayList(),
                 "русский",
-                genres.get(0),
-                "Толстой Л.Н.")
-        );
-        books.add(new Book(
-                "Хирургия",
-                new ArrayList(),
-                "русский",
                 genres.get(1),
-                "Чехов А.П.")
+                "Толстой Л.Н.")
         );
 
         ArrayList<Item> edMaterial = new ArrayList();

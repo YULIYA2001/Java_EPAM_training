@@ -1,4 +1,4 @@
-package com.golubovich.elibrary.util;
+package com.golubovich.elibrary.utils;
 
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;

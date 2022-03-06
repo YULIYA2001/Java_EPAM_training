@@ -1,4 +1,4 @@
-package com.golubovich.elibrary.util;
+package com.golubovich.elibrary.utils;
 
 public final class Constants {
     public static final int MIN_PASSWORD_SIZE = 8;

@@ -1,4 +1,4 @@
-package com.golubovich.elibrary.util;
+package com.golubovich.elibrary.utils;
 
 import com.golubovich.elibrary.beans.Admin;
 import com.golubovich.elibrary.beans.Client;
