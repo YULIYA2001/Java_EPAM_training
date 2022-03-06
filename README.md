@@ -14,6 +14,6 @@
 + Консольное меню должно быть минимальным.
 Приложение должно быть в многослойной архитектуре (beans-классы сущностей, services-бизнес-логика, dao или repository-доступ к данным (сначала - эмуляция базы данных коллекцией, потом файлами), controller- диспетчер, распределяющий запросы пользователя)
 
-###### Подробнее см. https://github.com/YULIYA2001/Java_EPAM_training/raw/master/ELibrary/raw/Требования к первому проекту.docx
+###### Подробнее см. https://github.com/YULIYA2001/Java_EPAM_training/raw/master/ELibrary/raw/"Требования к первому проекту.docx"
 
 ![Image alt](https://github.com/YULIYA2001/Java_EPAM_training/raw/master/ELibrary/raw/UML_ELibrary_Golubovich.jpg)
