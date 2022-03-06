@@ -6,10 +6,15 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Client extends Person {
+    private static int count = 0;
     private int age;
     private String eMail;
     private Date registrationDate;
     private ClientStatus clientStatus;
+
+    {
+        count++;
+    }
 
     public Client(String surname, String name, String patronymic, String password, int age,
                   String eMail, Date registrationDate, ClientStatus clientStatus) {
@@ -27,6 +32,14 @@ public class Client extends Person {
         this.eMail = copiedClient.eMail;
         this.registrationDate = copiedClient.registrationDate;
         this.clientStatus = copiedClient.clientStatus;
+    }
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static void incrementCount() {
+        count--;
     }
 
     public int getAge() {

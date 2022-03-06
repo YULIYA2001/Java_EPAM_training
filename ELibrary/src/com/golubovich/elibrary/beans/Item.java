@@ -10,6 +10,7 @@ public abstract class Item {
     private List<String> review;
     private String language;
 
+
     protected Item(String name, List<String> review, String language) {
         this.code = ++codeCount;
         this.name = name;
