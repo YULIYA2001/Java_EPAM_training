@@ -4,6 +4,7 @@ import com.golubovich.elibrary.beans.Genre;
 import com.golubovich.elibrary.dao.DAOProvider;
 import com.golubovich.elibrary.dao.api.GenreDAO;
 import com.golubovich.elibrary.service.api.GenreService;
+import java.util.Collections;
 import java.util.List;
 
 public class GenreServiceImpl implements GenreService {
@@ -19,6 +20,7 @@ public class GenreServiceImpl implements GenreService {
         List<Genre> genres = genreDAO.read();
 
         if (genres != null && !genres.isEmpty()) {
+            Collections.sort(genres);
             return genresListToString(genres);
         }
         return "Список жанров пуст";

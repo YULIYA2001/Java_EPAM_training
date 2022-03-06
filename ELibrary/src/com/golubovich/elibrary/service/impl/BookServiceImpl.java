@@ -6,6 +6,7 @@ import com.golubovich.elibrary.dao.DAOProvider;
 import com.golubovich.elibrary.dao.api.ItemDAO;
 import com.golubovich.elibrary.service.api.ItemService;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BookServiceImpl implements ItemService {
@@ -30,6 +31,7 @@ public class BookServiceImpl implements ItemService {
     public String showAll() {
         List<Book> books = bookDAO.read();
         if (books != null && !books.isEmpty()) {
+            Collections.sort(books);
             return objectListToString(books);
         }
         return "Список книг пуст";

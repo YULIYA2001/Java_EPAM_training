@@ -6,6 +6,7 @@ import com.golubovich.elibrary.dao.api.ItemDAO;
 import com.golubovich.elibrary.service.api.ItemService;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -31,6 +32,7 @@ public class MagazineServiceImpl implements ItemService {
     public String showAll() {
         List<Magazine> magazines = magazineDAO.read();
         if (magazines != null && !magazines.isEmpty()) {
+            Collections.sort(magazines);
             return objectListToString(magazines);
         }
         return "Список журналов пуст";

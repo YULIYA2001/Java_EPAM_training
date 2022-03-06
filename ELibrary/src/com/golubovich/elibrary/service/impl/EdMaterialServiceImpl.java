@@ -7,6 +7,7 @@ import com.golubovich.elibrary.enums.EdMaterialSubjects;
 import com.golubovich.elibrary.enums.EdMaterialType;
 import com.golubovich.elibrary.service.api.ItemService;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class EdMaterialServiceImpl implements ItemService {
@@ -34,6 +35,7 @@ public class EdMaterialServiceImpl implements ItemService {
     public String showAll() {
         List<EducationalMaterial> edMaterials = edMaterialDAO.read();
         if (edMaterials != null && !edMaterials.isEmpty()) {
+            Collections.sort(edMaterials);
             return objectListToString(edMaterials);
         }
         return "Список учебных материалов пуст";

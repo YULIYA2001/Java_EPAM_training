@@ -6,6 +6,9 @@ import com.golubovich.elibrary.dao.DAOProvider;
 import com.golubovich.elibrary.dao.api.ClientDAO;
 import com.golubovich.elibrary.enums.ClientStatus;
 import com.golubovich.elibrary.service.api.ClientService;
+import com.golubovich.elibrary.utils.comparators.CompareClientsByDate;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -39,6 +42,8 @@ public class ClientServiceImpl implements ClientService {
         List<Client> clients = clientDAO.read();
 
         if (clients != null && !clients.isEmpty()) {
+            Collections.sort(clients);
+            // clients.sort(new CompareClientsByDate());
             return objectListToString(clients);
         }
         return "Нет зарегистрированных клиентов";
