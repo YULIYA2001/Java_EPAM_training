@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-public class Client extends Person {
+public class Client extends Person implements Comparable<Client> {
     private static int count = 0;
     private int age;
     private String eMail;
@@ -107,5 +107,14 @@ public class Client extends Person {
                 "   Возраст: " + this.age +
                 "   Дата регистрации: " + formatter.format(this.registrationDate) +
                 "   Статус: " + this.clientStatus.getName();
+    }
+
+    @Override
+    public int compareTo(Client o) {
+        int result = this.getSurname().compareTo(o.getSurname());
+        if (result == 0) {
+            result = this.getName().compareTo(o.getName());
+        }
+        return result;
     }
 }

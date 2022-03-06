@@ -2,7 +2,7 @@ package com.golubovich.elibrary.beans;
 
 import java.util.Objects;
 
-public class Genre {
+public class Genre implements Comparable<Genre>{
     private static int codeCount = 0;
     private final int code;
     private String name;
@@ -59,5 +59,10 @@ public class Genre {
     @Override
     public String toString() {
         return this.code + ". Жанр: " + this.name + "  (описание: " + this.description + ")";
+    }
+
+    @Override
+    public int compareTo(Genre o) {
+        return this.getName().compareTo(o.getName());
     }
 }
