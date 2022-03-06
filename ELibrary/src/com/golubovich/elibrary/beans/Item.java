@@ -3,7 +3,7 @@ package com.golubovich.elibrary.beans;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Item {
+public abstract class Item implements Comparable<Item>{
     private static int codeCount = 0;
     private final int code;
     private String name;
@@ -73,6 +73,11 @@ public abstract class Item {
     @Override
     public String toString() {
         return "   Код: " + this.code + "   Название: " + this.name + "   Язык: " + this.language;
+    }
+
+    @Override
+    public int compareTo(Item o) {
+        return this.getName().compareTo(o.getName());
     }
 }
 
