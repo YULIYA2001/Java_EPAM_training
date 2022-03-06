@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 public class DataSource {
-    private Library library = new Library("E-Library", "http://elibrary.com", "e-library@gmail.com");
-    private Admin admin = new Admin("admin", "admin", "", "admin123");
+    private Library library;
+    private Admin admin;
     private List<Client> clients;
     private List<Genre> genres;
     private Map<ItemType, ArrayList<Item>> items;
