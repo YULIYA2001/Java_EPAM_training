@@ -1,6 +1,6 @@
 package com.golubovich.elibrary.view.validator;
 
-import static com.golubovich.elibrary.util.Constants.*;
+import static com.golubovich.elibrary.utils.Constants.*;
 import java.util.regex.Pattern;
 
 public final class InputValidator {

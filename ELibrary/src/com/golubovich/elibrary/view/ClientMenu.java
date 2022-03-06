@@ -1,8 +1,8 @@
 package com.golubovich.elibrary.view;
 
-import static com.golubovich.elibrary.util.Constants.MAX_AGE;
-import static com.golubovich.elibrary.util.Constants.MIN_AGE;
-import static com.golubovich.elibrary.util.Constants.WRONG_INPUT;
+import static com.golubovich.elibrary.utils.Constants.MAX_AGE;
+import static com.golubovich.elibrary.utils.Constants.MIN_AGE;
+import static com.golubovich.elibrary.utils.Constants.WRONG_INPUT;
 
 import com.golubovich.elibrary.controller.api.Controller;
 import com.golubovich.elibrary.controller.impl.ControllerImpl;

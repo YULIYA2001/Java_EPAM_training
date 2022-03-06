@@ -1,6 +1,6 @@
 package com.golubovich.elibrary.view;
 
-import static com.golubovich.elibrary.util.Constants.*;
+import static com.golubovich.elibrary.utils.Constants.*;
 import com.golubovich.elibrary.view.validator.InputValidator;
 import java.util.Scanner;
 
