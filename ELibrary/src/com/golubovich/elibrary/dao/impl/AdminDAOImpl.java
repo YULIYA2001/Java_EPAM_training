@@ -2,7 +2,7 @@ package com.golubovich.elibrary.dao.impl;
 
 import com.golubovich.elibrary.beans.Admin;
 import com.golubovich.elibrary.dao.api.AdminDAO;
-import com.golubovich.elibrary.util.DataSource;
+import com.golubovich.elibrary.utils.DataSource;
 
 public class AdminDAOImpl implements AdminDAO {
     private final DataSource dataSource = DataSource.getInstance();
