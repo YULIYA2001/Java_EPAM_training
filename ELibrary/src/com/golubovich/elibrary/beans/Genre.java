@@ -58,7 +58,7 @@ public class Genre implements Comparable<Genre>{
 
     @Override
     public String toString() {
-        return this.code + ". Жанр: " + this.name + "  (описание: " + this.description + ")";
+        return this.code + "- Жанр: " + this.name + "  (описание: " + this.description + ")";
     }
 
     @Override
