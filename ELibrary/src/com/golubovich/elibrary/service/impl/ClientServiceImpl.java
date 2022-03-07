@@ -6,9 +6,7 @@ import com.golubovich.elibrary.dao.DAOProvider;
 import com.golubovich.elibrary.dao.api.ClientDAO;
 import com.golubovich.elibrary.enums.ClientStatus;
 import com.golubovich.elibrary.service.api.ClientService;
-import com.golubovich.elibrary.utils.comparators.CompareClientsByDate;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -84,8 +82,9 @@ public class ClientServiceImpl implements ClientService {
 
     public boolean deleteByEMail(String eMail) {
         Client deletedClient = clientDAO.findByEmail(eMail);
-        if (deletedClient != null) {
-            return clientDAO.delete(deletedClient);
+        if (deletedClient != null && clientDAO.delete(deletedClient)) {
+            Client.decrementCount();
+            return true;
         }
         return false;
     }
@@ -112,7 +111,7 @@ public class ClientServiceImpl implements ClientService {
         StringBuilder clientsString = new StringBuilder();
 
         for (Client client : clients) {
-            clientsString.append(" ").append(client.toString()).append("\n");
+            clientsString.append(client.toString()).append("\n");
         }
 
         return String.valueOf(clientsString).substring(0, clientsString.length() - 1);

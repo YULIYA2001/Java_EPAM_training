@@ -41,7 +41,7 @@ public class Client extends Person implements Comparable<Client>, Serializable {
         return count;
     }
 
-    public static void incrementCount() {
+    public static void decrementCount() {
         count--;
     }
 

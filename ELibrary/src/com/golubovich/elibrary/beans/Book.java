@@ -7,6 +7,11 @@ import java.util.Objects;
 public class Book extends Item implements Serializable {
     private Genre genre;
     private String author;
+    private static int count;
+
+    {
+        count++;
+    }
 
     public Book() {}
 
@@ -20,6 +25,14 @@ public class Book extends Item implements Serializable {
         super(copiedBook.getName(), copiedBook.getReview(), copiedBook.getLanguage());
         this.genre = copiedBook.genre;
         this.author = copiedBook.author;
+    }
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static void decrementCount() {
+        count--;
     }
 
     public Genre getGenre() {

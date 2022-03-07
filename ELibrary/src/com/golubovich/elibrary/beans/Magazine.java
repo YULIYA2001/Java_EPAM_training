@@ -9,6 +9,11 @@ import java.util.Objects;
 public class Magazine extends Item implements Serializable {
     private int number;
     private Date date;
+    private static int count;
+
+    {
+        count++;
+    }
 
     public Magazine() {}
 
@@ -22,6 +27,14 @@ public class Magazine extends Item implements Serializable {
         super(copiedMagazine.getName(), copiedMagazine.getReview(), copiedMagazine.getLanguage());
         this.number = copiedMagazine.number;
         this.date = copiedMagazine.date;
+    }
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static void decrementCount() {
+        count--;
     }
 
     public int getNumber() {

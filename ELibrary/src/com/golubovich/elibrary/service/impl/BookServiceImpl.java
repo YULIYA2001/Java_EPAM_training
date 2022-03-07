@@ -19,7 +19,7 @@ public class BookServiceImpl implements ItemService {
         List<String> review = new ArrayList<>();
         String language = orderedParams[1];
         Genre genre = provider.getGenreDAO().findByCode(Integer.parseInt(orderedParams[2]));
-        String author = orderedParams[4];
+        String author = orderedParams[3];
 
         if (genre != null) {
             Book book = new Book(name, review, language, genre, author);
@@ -40,8 +40,9 @@ public class BookServiceImpl implements ItemService {
     public boolean deleteByCode(int code) {
         Book deletedBook = bookDAO.findByCode(code);
 
-        if (deletedBook != null) {
-            return bookDAO.delete(deletedBook);
+        if (deletedBook != null && bookDAO.delete(deletedBook)) {
+            Book.decrementCount();
+            return true;
         }
         return false;
     }

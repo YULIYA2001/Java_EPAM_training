@@ -41,8 +41,9 @@ public class MagazineServiceImpl implements ItemService {
     public boolean deleteByCode(int code) {
         Magazine deletedMagazine = magazineDAO.findByCode(code);
 
-        if (deletedMagazine != null) {
-            return magazineDAO.delete(deletedMagazine);
+        if (deletedMagazine != null && magazineDAO.delete(deletedMagazine)) {
+            Magazine.decrementCount();
+            return true;
         }
         return false;
     }

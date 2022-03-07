@@ -10,6 +10,11 @@ public class EducationalMaterial extends Item implements Serializable {
     private EdMaterialSubjects edMaterialSubject;
     private EdMaterialType edMaterialType;
     private String author;
+    private static int count;
+
+    {
+        count++;
+    }
 
     public EducationalMaterial() {}
 
@@ -27,6 +32,14 @@ public class EducationalMaterial extends Item implements Serializable {
         this.edMaterialSubject = educationalMaterial.edMaterialSubject;
         this.edMaterialType = educationalMaterial.edMaterialType;
         this.author = educationalMaterial.author;
+    }
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static void decrementCount() {
+        count--;
     }
 
     public EdMaterialSubjects getEdMaterialSubject() {

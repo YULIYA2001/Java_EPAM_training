@@ -44,8 +44,9 @@ public class EdMaterialServiceImpl implements ItemService {
     public boolean deleteByCode(int code) {
         EducationalMaterial deletedEdMaterial = edMaterialDAO.findByCode(code);
 
-        if (deletedEdMaterial != null) {
-            return edMaterialDAO.delete(deletedEdMaterial);
+        if (deletedEdMaterial != null && edMaterialDAO.delete(deletedEdMaterial)) {
+            EducationalMaterial.decrementCount();
+            return true;
         }
         return false;
     }
