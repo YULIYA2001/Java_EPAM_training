@@ -3,6 +3,7 @@ package com.golubovich.elibrary;
 import static com.golubovich.elibrary.utils.Constants.WRONG_INPUT_TRY_AGAIN;
 
 import com.golubovich.elibrary.utils.Initializer;
+import com.golubovich.elibrary.utils.Serialization;
 import com.golubovich.elibrary.view.AdminMenu;
 import com.golubovich.elibrary.view.ClientMenu;
 import java.util.Scanner;
@@ -14,8 +15,9 @@ public class LibraryMain {
     final String ADMIN = "2";
     final String EXIT = "0";
 
-    Initializer.initialization();
-    // Serialization.deserialize();
+    // Initializer.initialization();
+    Initializer.initializeCountFromFile();
+    Serialization.deserialize();
 
     Scanner in = new Scanner(System.in);
     System.out.println("\t Система Онлайн-Библиотека\n--------------------------------------");
@@ -32,7 +34,7 @@ public class LibraryMain {
           AdminMenu.adminSignInMenu();
           break;
         case EXIT:
-          // Serialization.serialize();
+          Serialization.serialize();
           return;
         default:
           System.out.println(WRONG_INPUT_TRY_AGAIN);

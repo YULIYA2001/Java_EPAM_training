@@ -20,7 +20,6 @@ public class BookServiceImpl implements ItemService {
 
   private final DAOProvider provider = DAOProvider.getInstance();
   private final ItemDAO<Book> bookDAO = provider.getBookDAO();
-  // private final ItemDAO<Book> bookFileDAO = provider.getBookFileDAO();
 
   public boolean add(String[] orderedParams) throws ServiceException {
 
@@ -35,7 +34,6 @@ public class BookServiceImpl implements ItemService {
       if (genre != null) {
         Book book = new Book(name, review, language, genre, author);
         return bookDAO.create(book);
-        // return bookFileDAO.create(book);
       }
       return false;
 
@@ -48,7 +46,6 @@ public class BookServiceImpl implements ItemService {
     List<Book> books;
     try {
       books = bookDAO.read();
-      // books = bookFileDAO.read();
     } catch (DAOException e) {
       throw new ServiceException(e);
     }
@@ -63,10 +60,8 @@ public class BookServiceImpl implements ItemService {
   public boolean deleteByCode(int code) throws ServiceException {
     try {
       Book deletedBook = bookDAO.findByCode(code);
-      // Book deletedBook = bookFileDAO.findByCode(code);
 
       if (deletedBook != null && bookDAO.delete(deletedBook)) {
-        // if (deletedBook != null && bookFileDAO.delete(deletedBook)) {
         Book.decrementCount();
         return true;
       }
@@ -80,13 +75,11 @@ public class BookServiceImpl implements ItemService {
   public boolean addReviewByCode(int code, String review) throws ServiceException {
     try {
       Book currentBook = bookDAO.findByCode(code);
-      // Book currentBook = bookFileDAO.findByCode(code);
 
       if (currentBook != null) {
         Book updatedBook = new Book(currentBook);
         updatedBook.getReview().add(review);
         bookDAO.update(currentBook, updatedBook);
-        // bookFileDAO.update(currentBook, updatedBook);
         return true;
       }
       return false;
@@ -100,7 +93,6 @@ public class BookServiceImpl implements ItemService {
     Book book;
     try {
       book = bookDAO.findByCode(code);
-      // book = bookFileDAO.findByCode(code);
     } catch (DAOException e) {
       throw new ServiceException(e);
     }

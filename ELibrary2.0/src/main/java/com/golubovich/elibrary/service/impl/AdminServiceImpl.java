@@ -13,7 +13,6 @@ public class AdminServiceImpl implements AdminService {
 
   private final DAOProvider provider = DAOProvider.getInstance();
   private final AdminDAO adminDAO = this.provider.getAdminDAO();
-  // private final AdminDAO adminFileDAO = this.provider.getAdminFileDAO();
 
   public boolean changeData(String surname, String name, String patronymic, String password)
       throws ServiceException {
@@ -25,7 +24,6 @@ public class AdminServiceImpl implements AdminService {
     Admin admin;
     try {
       admin = adminDAO.read();
-      // admin = adminFileDAO.read();
     } catch (DAOException e) {
       throw new ServiceException(e);
     }
@@ -46,7 +44,6 @@ public class AdminServiceImpl implements AdminService {
 
       try {
         return adminDAO.update(admin);
-        // return adminFileDAO.update(admin);
       } catch (DAOException e) {
         throw new ServiceException(e);
       }
@@ -59,7 +56,6 @@ public class AdminServiceImpl implements AdminService {
     Admin admin;
     try {
       admin = adminDAO.findByPassword(password);
-      // admin = adminFileDAO.findByPassword(password);
     } catch (DAOException e) {
       throw new ServiceException(e);
     }
@@ -70,7 +66,6 @@ public class AdminServiceImpl implements AdminService {
     Admin admin;
     try {
       admin = adminDAO.read();
-      // admin = adminFileDAO.read();
     } catch (DAOException e) {
       throw new ServiceException(e);
     }

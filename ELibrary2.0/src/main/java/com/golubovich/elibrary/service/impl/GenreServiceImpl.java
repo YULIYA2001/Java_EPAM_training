@@ -15,7 +15,6 @@ public class GenreServiceImpl implements GenreService {
 
   private final DAOProvider provider = DAOProvider.getInstance();
   private final GenreDAO genreDAO = provider.getGenreDAO();
-  // private final GenreDAO genreFileDAO = provider.getGenreFileDAO();
 
   public boolean add(String name, String description) throws ServiceException {
     Genre genre = new Genre(
@@ -24,7 +23,6 @@ public class GenreServiceImpl implements GenreService {
 
     try {
       return genreDAO.create(genre);
-      // return genreFileDAO.create(genre);
     } catch (DAOException e) {
       throw new ServiceException(e);
     }
@@ -34,7 +32,6 @@ public class GenreServiceImpl implements GenreService {
     List<Genre> genres;
     try {
       genres = genreDAO.read();
-      // genres = genreFileDAO.read();
     } catch (DAOException e) {
       throw new ServiceException(e);
     }

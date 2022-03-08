@@ -20,6 +20,7 @@ public class ClientServiceImpl implements ClientService {
 
   private final DAOProvider provider = DAOProvider.getInstance();
   private final ClientDAO clientDAO = provider.getClientDAO();
+  private final ClientDAO clientFileDAO = provider.getClientFileDAO();
 
   public boolean register(String[] orderedFields) throws ServiceException {
 
@@ -39,8 +40,10 @@ public class ClientServiceImpl implements ClientService {
 
     try {
 
-      if (clientDAO.findByEmail(eMail) == null) {
-        return clientDAO.create(client);
+      // if (clientDAO.findByEmail(eMail) == null) {
+      if (clientFileDAO.findByEmail(eMail) == null) {
+        // return clientDAO.create(client);
+        return clientFileDAO.create(client);
       }
       return false;
 
@@ -52,7 +55,8 @@ public class ClientServiceImpl implements ClientService {
   public String showAll() throws ServiceException {
     List<Client> clients;
     try {
-      clients = clientDAO.read();
+      // clients = clientDAO.read();
+      clients = clientFileDAO.read();
     } catch (DAOException e) {
       throw new ServiceException(e);
     }
@@ -73,7 +77,8 @@ public class ClientServiceImpl implements ClientService {
 
     Client currentClient;
     try {
-      currentClient = clientDAO.findByEmail(eMail);
+      // currentClient = clientDAO.findByEmail(eMail);
+      currentClient = clientFileDAO.findByEmail(eMail);
     } catch (DAOException e) {
       throw new ServiceException(e);
     }
@@ -98,7 +103,8 @@ public class ClientServiceImpl implements ClientService {
       }
 
       try {
-        clientDAO.update(currentClient, updatedClient);
+        // clientDAO.update(currentClient, updatedClient);
+        clientFileDAO.update(currentClient, updatedClient);
       } catch (DAOException e) {
         throw new ServiceException(e);
       }
@@ -110,8 +116,10 @@ public class ClientServiceImpl implements ClientService {
 
   public boolean deleteByEMail(String eMail) throws ServiceException {
     try {
-      Client deletedClient = clientDAO.findByEmail(eMail);
-      if (deletedClient != null && clientDAO.delete(deletedClient)) {
+      // Client deletedClient = clientDAO.findByEmail(eMail);
+      //      if (deletedClient != null && clientDAO.delete(deletedClient)) {
+      Client deletedClient = clientFileDAO.findByEmail(eMail);
+      if (deletedClient != null && clientFileDAO.delete(deletedClient)) {
         Client.decrementCount();
         return true;
       }
@@ -125,7 +133,8 @@ public class ClientServiceImpl implements ClientService {
   public String showByEMail(String eMail) throws ServiceException {
     Client client;
     try {
-      client = clientDAO.findByEmail(eMail);
+      // client = clientDAO.findByEmail(eMail);
+      client = clientFileDAO.findByEmail(eMail);
     } catch (DAOException e) {
       throw new ServiceException(e);
     }
@@ -139,7 +148,8 @@ public class ClientServiceImpl implements ClientService {
   public boolean authorize(String eMail, String password) throws ServiceException {
     Client client;
     try {
-      client = clientDAO.findByEmail(eMail);
+      // client = clientDAO.findByEmail(eMail);
+      client = clientFileDAO.findByEmail(eMail);
     } catch (DAOException e) {
       throw new ServiceException(e);
     }

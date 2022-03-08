@@ -16,11 +16,14 @@ import com.golubovich.elibrary.beans.Genre;
 import com.golubovich.elibrary.beans.Item;
 import com.golubovich.elibrary.beans.Library;
 import com.golubovich.elibrary.beans.Magazine;
+import com.golubovich.elibrary.dao.DAOException;
 import com.golubovich.elibrary.enums.ClientStatus;
 import com.golubovich.elibrary.enums.EdMaterialSubjects;
 import com.golubovich.elibrary.enums.EdMaterialType;
 import com.golubovich.elibrary.enums.ItemType;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,6 +31,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 public class Initializer {
@@ -126,6 +130,21 @@ public class Initializer {
     initializer.writeItemArrayToFile(BOOK_DB_TABLE, books);
     initializer.writeItemArrayToFile(MAGAZINE_DB_TABLE, magazines);
     initializer.writeItemArrayToFile(EDUCATIONAL_MATERIAL_DB_TABLE, edMaterials);
+  }
+
+  public static void initializeCountFromFile() {
+    int count = 0;
+
+    try (Scanner scanner = new Scanner(new File(CLIENT_DB_TABLE))) {
+      while (scanner.hasNextLine()) {
+        scanner.nextLine();
+        count++;
+      }
+    } catch (FileNotFoundException e) {
+      log.error(e.getMessage());
+    }
+
+    Client.setCount(count);
   }
 
   private <T> void writeSingleObjectToFile(String filePath, T object) {
