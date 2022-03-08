@@ -17,12 +17,27 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import org.apache.log4j.Logger;
 
+/**
+ * <b>Serialization class</b>
+ * Serialization class with private constructor and methods for serializing and
+ * deserializing program state. Save and execute last program state from file
+ *
+ * @author Yulia Golubovich
+ * @version 1.0
+ * @since 08.03.2022
+ */
 public class Serialization {
   private static final Logger log = Logger.getLogger(Serialization.class);
 
   private Serialization() {
   }
 
+  /**
+   * Serialize current program state to byte file.
+   * <p>
+   * This method executes before exit program. It opens file and write all
+   * information from {@link DataSource}
+   */
   public static void serialize() {
     try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(
         RESOURCES + SERIALIZATION_FILE_NAME
@@ -41,6 +56,16 @@ public class Serialization {
   }
 
 
+  /**
+   * Deserialize last program state from byte file.
+   * <p>
+   *   This method executes in the beginning of program. It opens file, read
+   *   information and write it to {@link DataSource}
+   *
+   * <p>
+   *   If exception was caught, executes method from {@link Initializer} class
+   *   to initialize default program state
+   */
   public static void deserialize() {
     Library library;
     Admin admin;

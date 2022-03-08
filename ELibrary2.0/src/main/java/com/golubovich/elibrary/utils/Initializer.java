@@ -16,7 +16,6 @@ import com.golubovich.elibrary.beans.Genre;
 import com.golubovich.elibrary.beans.Item;
 import com.golubovich.elibrary.beans.Library;
 import com.golubovich.elibrary.beans.Magazine;
-import com.golubovich.elibrary.dao.DAOException;
 import com.golubovich.elibrary.enums.ClientStatus;
 import com.golubovich.elibrary.enums.EdMaterialSubjects;
 import com.golubovich.elibrary.enums.EdMaterialType;
@@ -34,6 +33,16 @@ import java.util.Map;
 import java.util.Scanner;
 import org.apache.log4j.Logger;
 
+/**
+ * <b>Initializer class</b>
+ * <p>
+ *   Initializer class contains public method to provide initial data
+ *   for program.
+ *
+ * @author Yulia Golubovich
+ * @version 1.0
+ * @since 08.03.2022
+ */
 public class Initializer {
 
   private static final Logger log = Logger.getLogger(Initializer.class);
@@ -42,6 +51,16 @@ public class Initializer {
 
   }
 
+  /**
+   * Method to initialize program with start data
+   * <p>
+   *   It executes ones or never from class {@link Serialization}
+   *   If serialization is unavailable, this method executes as a default
+   *   It fills all fields of {@link DataSource} class, which presents database
+   *   emulation as a collection of arrays
+   *   It also updates/creates files containing the same information as class.
+   *   Files emulate database. Each file presents a database table
+   */
   public static void initialization() {
     Library library = new Library("E-Library", "http://elibrary.com", "elibrary@gmail.com");
     DataSource.getInstance().setLibrary(library);
@@ -132,6 +151,13 @@ public class Initializer {
     initializer.writeItemArrayToFile(EDUCATIONAL_MATERIAL_DB_TABLE, edMaterials);
   }
 
+  /**
+   * Method to initialize initial value of  static count variables in beans classes
+   * <p>
+   *   It executes ones in the beginning of program
+   *   Method opens file, which contains clients (file of clients table in database)
+   *   and counts lines (beans) to initialize counter in {@link Client} bean class
+   */
   public static void initializeCountFromFile() {
     int count = 0;
 
@@ -147,6 +173,20 @@ public class Initializer {
     Client.setCount(count);
   }
 
+  /**
+   * Method to write one object to file
+   * <p>
+   *   It opens file and rewrite information.
+   *
+   * @param filePath - path to file (file will be rewrite)
+   * @param object - object, we want to write to file
+   *
+   * <p>
+   *    object converts to json-string using side library, then string is writes to file
+   *
+   * @see "https://github.com/alibaba/fastjson"
+   * @see JSONSerializer#toJSON(Object)
+   */
   private <T> void writeSingleObjectToFile(String filePath, T object) {
     try (FileWriter fw = new FileWriter(filePath, false)) {
       String jsonObjectString = JSONSerializer.toJSON(object);
@@ -157,6 +197,18 @@ public class Initializer {
     }
   }
 
+  /**
+   * Method to write list of objects to file
+   * <p>
+   *   Objects convert to json-strings using side library, then strings are write to file
+   *
+   * @param filePath - path to file
+   * @param items - list of objects, we want to write to file
+   * @param <T> - type of list items
+   *
+   * @see "https://github.com/alibaba/fastjson"
+   * @see JSONSerializer#toJSON(Object)
+   */
   private <T> void writeItemArrayToFile(String filePath, List<T> items) {
     try (BufferedWriter fw = new BufferedWriter(new FileWriter(filePath))) {
       ArrayList<String> jsonItems = new ArrayList<>();
